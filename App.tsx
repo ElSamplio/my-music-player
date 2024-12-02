@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
+import FileListScreen from "./FileListScreen";
+import AudioPlayer from "./AudioPlayer";
+import { FileInfo } from "./src/types/FileInfo";
+import { useState } from "react";
 
-export default function App() {
+const App: React.FC = () => {
+  const handleItemPress = (item: FileInfo) => {
+    setCurrentFile(item);
+  };
+
+  const [currentFile, setCurrentFile] = useState<FileInfo>();
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <AudioPlayer file={currentFile} />
+      <FileListScreen onItemPress={handleItemPress} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "column",
+  },
+  player: {
+    flex: 3,
+  },
+  list: {
+    flex: 9,
   },
 });
+
+export default App;
