@@ -19,10 +19,24 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "WAKE_LOCK"
+      ],
+      "playback": {
+        "android": {
+          "stayAwake": true
+        }
+      },
+      "package": "com.elsamplio2.mymusicplayer"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "69d2e99a-8506-4495-8370-2e4ebe4ba092"
+      }
     }
   }
 }

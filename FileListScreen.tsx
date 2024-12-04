@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Text,
@@ -13,11 +13,19 @@ import { FileInfo } from "./src/types/FileInfo";
 
 interface FileListScreenProps {
   onItemPress: (item: FileInfo) => void;
+  setFiles: (files: FileInfo[]) => void;
 }
 
-const FileListScreen: React.FC<FileListScreenProps> = ({ onItemPress }) => {
+const FileListScreen: React.FC<FileListScreenProps> = ({
+  onItemPress,
+  setFiles,
+}) => {
   const [query, setQuery] = useState<string>("");
   const { files, loading, error } = useFetchList(query);
+
+  useEffect(() => {
+    setFiles(files);
+  }, [files]);
 
   if (loading) {
     return <ActivityIndicator size="large" />;
